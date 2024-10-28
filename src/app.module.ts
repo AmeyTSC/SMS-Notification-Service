@@ -3,7 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SmsSqsModule } from './sms_sqs/sms_sqs.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
+import { WhatsappDevModule } from './whatsapp_dev/whatsapp_dev.module';
+import { WhatsappSqsModule } from './whatsapp_sqs/whatsapp_sqs.module';
+import { GetwhatsappstatusModule } from './getwhatsappstatus/getwhatsappstatus.module';
+import { GupshupmsgrepModule } from './gupshupmsgrep/gupshupmsgrep.module';
+import { ResendwhatsappModule } from './resendwhatsapp/resendwhatsapp.module';
+import { EmailSqsModule } from './email-sqs/email-sqs.module';
+import { WhatsappstatusModule } from './whatsappstatus/whatsappstatus.module';
 import { SmsTriggerModule } from './sms_trigger/sms_trigger.module';
 import { SmsStatuscheckModule } from './sms-statuscheck/sms-statuscheck.module';
 import { SmsupdatestatusModule } from './smsupdatestatus/smsupdatestatus.module';
@@ -14,10 +20,7 @@ dotenv.config({path: process.cwd() + '/.env'});
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true, 
-    }),
-    MongooseModule.forRoot(process.env.MONGO_URL),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule],
+    MongooseModule.forRoot(process.env.DATABASE),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule,WhatsappDevModule, WhatsappSqsModule,  GetwhatsappstatusModule, GupshupmsgrepModule, ResendwhatsappModule, EmailSqsModule, WhatsappstatusModule],
   controllers: [AppController],
   providers: [AppService],
 })
