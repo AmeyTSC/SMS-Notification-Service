@@ -13,15 +13,20 @@ export class SmsSqsService {
   constructor(
     @InjectModel(SmsLog.name) private readonly smsLogModel: Model<SmsLog>,
   ) {
-    // Initialize the SQS client with credentials
+
     this.sqsClient = new SQSClient({
       region: process.env.AWS_REGION,
       credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY,
+
         secretAccessKey: process.env.AWS_SECERT_KEY,
       },
     });
     this.QUEUE_URL = process.env.SQS_URL_SMS;
+
+       
+      },
+    });
   }
 
   async sendSmsMessage(templateAttributes: any) {
@@ -30,6 +35,7 @@ export class SmsSqsService {
       MessageBody: JSON.stringify({ template_attributes: templateAttributes }),
       DelaySeconds: 300,
     };
+
     try {
       const command = new SendMessageCommand(params);
       await this.sqsClient.send(command);
@@ -54,6 +60,10 @@ export class SmsSqsService {
     } catch (error) {
       console.error('Error creating SMS log:', error.message);
       throw error;
+
     }
-  }
+}
+
+
+}
 }

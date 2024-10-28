@@ -15,12 +15,14 @@ import { SmsupdatestatusModule } from './smsupdatestatus/smsupdatestatus.module'
 import { SmslogsModule } from './smslogs/smslogs.module';
 import { SmslogRagebaseModule } from './smslog_ragebase/smslog_ragebase.module';
 import { EmailSqsModule } from './email-sqs/email-sqs.module';
+import { TemplatehitsModule } from './templatehits/templatehits.module';
 import * as dotenv from 'dotenv';
 dotenv.config({path: process.cwd() + '/.env'});
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.DATABASE),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule,WhatsappDevModule, WhatsappSqsModule,  GetwhatsappstatusModule, GupshupmsgrepModule, ResendwhatsappModule, EmailSqsModule, WhatsappstatusModule],
+    MongooseModule.forRoot(process.env.DATABASE),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule,TemplatehitsModule, WhatsappDevModule, WhatsappSqsModule,  GetwhatsappstatusModule, GupshupmsgrepModule, ResendwhatsappModule, EmailSqsModule, WhatsappstatusModule],
+
   controllers: [AppController],
   providers: [AppService],
 })
