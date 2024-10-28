@@ -9,6 +9,7 @@ import { SmsStatuscheckModule } from './sms-statuscheck/sms-statuscheck.module';
 import { SmsupdatestatusModule } from './smsupdatestatus/smsupdatestatus.module';
 import { SmslogsModule } from './smslogs/smslogs.module';
 import { SmslogRagebaseModule } from './smslog_ragebase/smslog_ragebase.module';
+import { TemplatehitsModule } from './templatehits/templatehits.module';
 import * as dotenv from 'dotenv';
 dotenv.config({path: process.cwd() + '/.env'});
 
@@ -17,7 +18,7 @@ dotenv.config({path: process.cwd() + '/.env'});
     ConfigModule.forRoot({
       isGlobal: true, 
     }),
-    MongooseModule.forRoot(process.env.MONGO_URL),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule],
+    MongooseModule.forRoot(process.env.MONGO_URL),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule, TemplatehitsModule],
   controllers: [AppController],
   providers: [AppService],
 })
