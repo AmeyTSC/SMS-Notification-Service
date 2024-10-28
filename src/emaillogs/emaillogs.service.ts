@@ -4,7 +4,6 @@ import { Model } from 'mongoose';
 import { EmailTemplatesService } from 'src/utils/email_templates';
 import { emailLogs } from 'src/Schema/email_logs.schema';
 import { emailsparkpost } from 'src/utils/email_send';
-
 @Injectable()
 export class EmaillogsService {
     constructor(@InjectModel('emailLogs') private EmailLogModel : Model<emailLogs>,
@@ -60,7 +59,6 @@ async emaillogs(createdAt: string) {
               templateName: item.templateName,
               email_status: email_status,
           })
-       
     }
    return {
       statusCode: 200,
@@ -68,10 +66,7 @@ async emaillogs(createdAt: string) {
           total_hits: items.length,
           totalCounts,
           successCounts,
-          errorCounts
-      ,
+          errorCounts,
    };
-    
-  
   }
 }

@@ -17,7 +17,6 @@ export class TemplatehitsService {
     const notFoundNumbers: string[] = [];
     const allItems = [];
 
-
     for (const phoneNo of phoneNumbers) {
         let items;
     
@@ -37,9 +36,6 @@ export class TemplatehitsService {
           notFoundNumbers.push(phoneNo);
         }
       }
-    
-
-
     return { data: allItems, notFound: notFoundNumbers };
   }
 }

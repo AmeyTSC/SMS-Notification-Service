@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { SmsHitLog } from 'src/Schema/smshit_log.schema';
-
 @Injectable()
 export class SmslogRagebaseService {
   constructor(@InjectModel('SmsHitLog') private SmsHitLogModel: Model<SmsHitLog>) {}
@@ -26,7 +25,6 @@ export class SmslogRagebaseService {
     }
 
     try {
-
       const startDateString = `${start_date}T00:00:00.000Z`;
         const endDateString = `${end_date}T23:59:59.999Z`;
       
