@@ -108,6 +108,9 @@ export class EmailHit extends Document {
   @Prop()
   price_before_discount: string;
 
+  @Prop()
+  sparkpost_status: string;
+
   @Prop([Object]) // Array of objects for product details
   productsData: Array<Record<string, any>>;
 
