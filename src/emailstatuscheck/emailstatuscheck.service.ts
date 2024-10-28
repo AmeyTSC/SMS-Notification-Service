@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SQSClient, SendMessageCommand} from '@aws-sdk/client-sqs';
-
 @Injectable()
 export class EmailstatuscheckService {
   private sqsClient: SQSClient;

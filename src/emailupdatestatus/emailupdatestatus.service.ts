@@ -1,12 +1,7 @@
-
-//export class EmailupdatestatusService {}
-
-
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { EmailHit } from 'src/Schema/email_hits.schema';
-
 
 @Injectable()
 export class EmailupdatestatusService {
@@ -30,11 +25,10 @@ export class EmailupdatestatusService {
 
       this.logger.log(`Processing transmission ID: ${data.transmission_id}`);
 
-      // Update MongoDB document with new status
       await this.emailHitModel.updateOne(
         { id: data.transmission_id },
         { $set: { sparkpost_status: data.type } },
-        { upsert: true }  // Adds new document if no match is found
+        { upsert: true }  
       );
 
       this.logger.log('Data processed successfully');

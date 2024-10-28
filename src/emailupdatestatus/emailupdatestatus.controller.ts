@@ -1,5 +1,3 @@
-
-//export class EmailupdatestatusController {}
 import { Controller, Post, Req } from '@nestjs/common';
 import { EmailupdatestatusService } from './emailupdatestatus.service';
 
@@ -7,7 +5,7 @@ import { EmailupdatestatusService } from './emailupdatestatus.service';
 export class EmailupdatestatusController {
   constructor(private readonly emailupdatestatusService: EmailupdatestatusService) {}
 
-  @Post('webhook')
+  @Post()
   async handleEmailReportWebhook(@Req() req): Promise<void> {
     await this.emailupdatestatusService.handleEmailReportWebhook(req.body);
   }
