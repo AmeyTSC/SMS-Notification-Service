@@ -5,7 +5,7 @@ export const getproductimage = async (product_id, variant_id) => {
     method: "get",
     url: `https://thesleepcompanystore.myshopify.com/admin/api/2024-07/products/${product_id}.json`,
     headers: {
-      "X-Shopify-Access-Token": "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",
+      "X-Shopify-Access-Token": process.env.ACCESS_TOKEN,
     },
   };
 
