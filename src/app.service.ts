@@ -1,28 +1,23 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 @Injectable()
 export class AppService {
-  private readonly logger = new Logger(AppService.name);
   constructor(@InjectConnection() private readonly connection: Connection) {}
 
-  ConnectionStatus(): void {
+  ConnectionStatus(): string {
     const status = this.connection.readyState;
     switch (status) {
       case 0:
-        this.logger.fatal('Disconnected');
-        break;
+        return 'Database: Disconnected';
       case 1:
-        this.logger.log('Connected');
-        break;
+        return 'Database: Connected';
       case 2:
-        this.logger.log('Connecting');
-        break;
+        return 'Database: Connecting';
       case 3:
-        this.logger.warn('Disconnecting');
-        break;
+        return 'Database: Disconnecting';
       default:
-        this.logger.error('Unknown status');
+        return 'Error: Unknown Status';
     }
   }
 }

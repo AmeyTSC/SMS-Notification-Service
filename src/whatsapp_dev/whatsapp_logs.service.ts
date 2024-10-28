@@ -59,7 +59,6 @@ export class WhatsappLogsave {
       // Save the log data to MongoDB
       
       const log = new this.whatsappLogModel(logData);
-      console.log(log);
       return await log.save();
     } catch (error) {
       throw new Error(`Error logging WhatsApp response: ${error.message}`);
