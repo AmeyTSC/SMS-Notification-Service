@@ -9,7 +9,7 @@ export const getproductimage = async (product_id, variant_id) => {
     },
   };
 
-  try {
+ try{
     const response = await axios(config);
     const product = response.data.product;
 
