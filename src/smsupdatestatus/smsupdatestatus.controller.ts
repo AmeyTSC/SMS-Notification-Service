@@ -1,7 +1,7 @@
 import { Controller, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
 import { SmsupdatestatusService } from './smsupdatestatus.service';
 
-@Controller('sms-report')
+@Controller()
 export class SmsupdatestatusController {
   constructor(private readonly smsupdatestatusService: SmsupdatestatusService) {}
 

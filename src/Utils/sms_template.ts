@@ -1,15 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { SMS_Template } from 'src/Schema/sms_template.schema';
 
 @Injectable()
 export class SmsTemplateService {
-  constructor(
-    @InjectModel('SMS_Template') private sms_templateModel: Model<SMS_Template>,
-  ) {}
+  constructor() {}
 
-  async getsmstemplateDetail(template_attributes: SMS_Template){
+  async getsmstemplateDetail(template_attributes:any){
     const {
       phoneNo = '',
       customerName = '',
@@ -18,13 +13,13 @@ export class SmsTemplateService {
       awbNo = '',
     } = template_attributes;
 
-    const newtemplate = new this.sms_templateModel({
-      phoneNo,
-      customerName,
-      orderId,
-      templateName,
-      awbNo,
-    });
+    // const newtemplate = new this.sms_templateModel({
+    //   phoneNo,
+    //   customerName,
+    //   orderId,
+    //   templateName,
+    //   awbNo,
+    // });
     const phoneNumber = phoneNo ? phoneNo.slice(-10) : undefined;
 
     const tracklink = `https://thesleepcompany.in/account/login?return_url=%2Faccount%23view=${orderId}`;

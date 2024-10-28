@@ -15,10 +15,7 @@ dotenv.config({path: process.cwd() + '/.env'});
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true, 
-    }),
-    MongooseModule.forRoot(process.env.MONGO_URL),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule, TemplatehitsModule],
+    MongooseModule.forRoot(process.env.DATABASE),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule, TemplatehitsModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -1,29 +1,33 @@
 import { Injectable, Logger } from '@nestjs/common';
-import * as AWS from 'aws-sdk';
-
+import { SQSClient, SendMessageCommand} from '@aws-sdk/client-sqs';
 @Injectable()
-export class SmsStatuscheckService {
-  private readonly sqs: AWS.SQS;
-  private readonly queueUrl: string = process.env.SMSREPORT || 'https://sqs.ap-south-1.amazonaws.com/440586161847/sms-report-dev';
-  private readonly logger = new Logger(SmsStatuscheckService.name);
-
-  constructor() {
-    this.sqs = new AWS.SQS({ region: 'ap-south-1' });
+export class SmsStatuscheckService{
+  private sqsClient: SQSClient;
+  private QUEUE_URL: string;
+  constructor(){
+    this.sqsClient = new SQSClient({
+      region: process.env.AWS_REGION,
+      credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey:
+          process.env.AWS_SECERT_KEY,
+      },
+    });
+    this.QUEUE_URL =process.env.SMSREPORT || 'https://sqs.ap-south-1.amazonaws.com/440586161847/sms-report-dev';
   }
-
-  async sendMessageToSqs(requestparam: Record<string, any>) {
-    const params: AWS.SQS.SendMessageRequest = {
-      QueueUrl: this.queueUrl,
+  async sendMessageToSqs(requestparam: Record<string, any>){
+    const params = {
+      QueueUrl: this.QUEUE_URL,
       MessageBody: JSON.stringify({ requestparam }),
-      DelaySeconds: 120,
+      DelaySeconds: 300,
     };
-
-    try {
-      await this.sqs.sendMessage(params).promise();
-      this.logger.log('SQS message created successfully');
-    } catch (error) {
-      this.logger.error('Error sending message to SQS:', error.message);
-      throw error;
+    try{
+      const command = new SendMessageCommand(params);
+      await this.sqsClient.send(command); 
+      console.log('SQS message created successfully');
+    }catch(error){
+      console.error('Error sending message to SQS:', error.message);
+       throw error;
     }
-  }
+}
 }

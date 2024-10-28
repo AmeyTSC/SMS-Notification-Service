@@ -2,10 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { nanoid } from 'nanoid';
-import { smsSent } from 'src/Utils/sms_send';
+import { smsSent } from 'src/utils/sms_send';
 import { SmsHitLog } from 'src/Schema/smshit_log.schema';
 import { SmsErrorLog } from 'src/Schema/smserror_log.schema';
-import { SmsTemplateService } from 'src/Utils/sms_template';
+import { SmsTemplateService } from 'src/utils/sms_template';
 
 @Injectable()
 export class SmsTriggerService {

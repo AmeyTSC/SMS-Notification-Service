@@ -16,17 +16,6 @@ export class TemplatehitsService {
     const notFoundNumbers: string[] = [];
     const allItems = [];
 
-    // for (const phoneNo of phoneNumbers) {
-    //   const items = await model.find({
-    //     [attribute_name]: { $regex: phoneNo, $options: 'i' },
-    //   }).exec();
-
-    //   if (items.length > 0) {
-    //     allItems.push(...items);
-    //   } else {
-    //     notFoundNumbers.push(phoneNo);
-    //   }
-    // }
 
     for (const phoneNo of phoneNumbers) {
         let items;

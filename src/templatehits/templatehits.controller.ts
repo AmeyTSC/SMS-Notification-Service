@@ -1,7 +1,7 @@
 import { Controller, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
 import { TemplatehitsService } from './templatehits.service';
 
-@Controller('template-hits')
+@Controller('template_hits')
 export class TemplatehitsController {
   constructor(private readonly templateHitsService: TemplatehitsService) {}
 
