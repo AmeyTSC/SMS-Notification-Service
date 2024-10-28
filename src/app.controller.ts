@@ -6,8 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): void{
-    this.appService.ConnectionStatus();
-    return;
+  getHello(): string {
+    return this.appService.ConnectionStatus(); 
   }
 }
