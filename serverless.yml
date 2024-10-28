@@ -116,7 +116,7 @@ notification_whatsapp_logs:
     timeout: 300
     events:
       - http:
-          path: /notification/emaillogs
+          path: /emaillogs
           method: get
           cors: true
  
@@ -125,7 +125,7 @@ notification_whatsapp_logs:
     timeout: 300
     events:
       - http:
-          path: /notification/emailrangelogs
+          path: /emaillogs/range
           method: get
           cors: true
  
@@ -213,7 +213,7 @@ notification_whatsapp_logs:
     timeout: 300
     events:
       - http:
-          path: /sparkportreport
+          path: /emailstatuscheck
           method: post
           cors: true
           private: false
@@ -243,7 +243,7 @@ notification_whatsapp_logs:
     handler: src/main.handler
     events:
       - http:
-          path: /email
+          path: /emailsqs
           method: post
           cors: true
           private: false
@@ -252,7 +252,7 @@ notification_whatsapp_logs:
     handler: src/main.handler
     events:
       - http:
-          path: /email_send
+          path: /email/send
           method: post
           cors: true
           private: false

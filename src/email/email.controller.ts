@@ -2,7 +2,6 @@ import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { EmailService } from './email.service';
 import { emailLogs} from 'src/Schema/email_logs.schema';
 
-
 @Controller('email')
 export class EmailController {
  constructor(private readonly emailservice: EmailService

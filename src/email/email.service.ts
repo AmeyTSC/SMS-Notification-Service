@@ -6,7 +6,6 @@ import { EmailTemplatesService } from 'src/utils/email_templates';
 import { emailLogs } from 'src/Schema/email_logs.schema';
 import { emailsparkpost } from 'src/utils/email_send';
 
-
 @Injectable()
 export class EmailService {
     constructor(@InjectModel(emailLogs.name) private EmailLogModel : Model<emailLogs>,
