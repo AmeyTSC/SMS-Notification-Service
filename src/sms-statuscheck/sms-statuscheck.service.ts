@@ -23,11 +23,15 @@ export class SmsStatuscheckService{
     };
     try{
       const command = new SendMessageCommand(params);
-      await this.sqsClient.send(command); 
+
+      await this.sqsClient.send(command);
+
       console.log('SQS message created successfully');
     }catch(error){
       console.error('Error sending message to SQS:', error.message);
        throw error;
     }
+
+}
 }
 }
