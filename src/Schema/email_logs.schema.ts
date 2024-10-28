@@ -63,12 +63,18 @@ export class DateRange {
 export class emailLogs extends Document {
   @Prop()
   id: string;
-
+  
   @Prop({ required: false, omitUndefined: true })
   billing_address?: Address;
 
   @Prop({ required: false, omitUndefined: true })
   created_at?: string;
+
+  @Prop({ required: false, omitUndefined: true })
+  phoneNo?: string;
+
+  @Prop({ required: false, omitUndefined: true, type: Object })
+  email_response?: any;
 
   @Prop({ required: false, omitUndefined: true })
   customerEmail?: string;

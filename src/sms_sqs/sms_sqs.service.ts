@@ -25,9 +25,7 @@ export class SmsSqsService {
     this.QUEUE_URL = process.env.SQS_URL_SMS;
 
        
-      },
-    });
-  }
+      };
 
   async sendSmsMessage(templateAttributes: any) {
     const params = {
@@ -65,5 +63,4 @@ export class SmsSqsService {
 }
 
 
-}
 }

@@ -9,6 +9,21 @@ export class DateRange {
   @Prop()
   end: string;
 }
+interface BillingAddress {
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
+
+interface ShippingAddress {
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
 
 @Schema({ _id: false })
 export class Address {
@@ -63,8 +78,11 @@ export class EmailHit extends Document {
   @Prop()
   id: string;
 
-  @Prop()
-  billing_address: Record<string, any>; // Use an appropriate sub-schema or detailed fields if needed
+  @Prop({ type: () => Object }) // Use Object type for a complex structure
+  billing_address: BillingAddress;
+
+  @Prop({ type: () => Object }) // Use Object type for a complex structure
+  shipping_address: ShippingAddress;
 
   @Prop()
   created_at: string;
@@ -93,8 +111,8 @@ export class EmailHit extends Document {
   @Prop([Object]) // Array of objects for product details
   productsData: Array<Record<string, any>>;
 
-  @Prop()
-  shipping_address: Record<string, any>; // Define as sub-schema if needed for structured fields
+  // @Prop()
+  // shipping_address: Record<string, any>; // Define as sub-schema if needed for structured fields
 
   @Prop()
   shopify_id: number;
