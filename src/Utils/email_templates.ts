@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 
-
 @Injectable()
 export class EmailTemplatesService {
     constructor(){}
@@ -21,8 +20,6 @@ export class EmailTemplatesService {
      pdflink = '',
      tracklink = '',
     } = template_attributes;
-
-    
  
     const generateTableRows = (items: any[]) => {
         const rowTemplate = (el: { image: any; ProductName: any; quantity: any; }) => `

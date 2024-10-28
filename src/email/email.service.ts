@@ -5,7 +5,6 @@ import { nanoid } from 'nanoid';
 import { EmailTemplatesService } from 'src/utils/email_templates';
 import { emailLogs } from 'src/Schema/email_logs.schema';
 import { emailsparkpost } from 'src/utils/email_send';
-
 @Injectable()
 export class EmailService {
     constructor(@InjectModel(emailLogs.name) private EmailLogModel : Model<emailLogs>,
@@ -17,7 +16,6 @@ export class EmailService {
              const templateInfo = await this.emailTemplatesService.emailtemplateDetail(templateAttributes);
             const sparkpostresponse = await this.Emailsparkpost.emailsparkpost(templateInfo);
             
-
             const newemailLog = new this.EmailLogModel({
                 id: nanoid(),
                 ...templateInfo,
@@ -27,7 +25,6 @@ export class EmailService {
                 .toISOString()
                 .replace("Z", "+05:30"),
             })
-
              await newemailLog.save();
 
              return {

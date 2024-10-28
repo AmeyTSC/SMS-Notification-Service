@@ -13,13 +13,6 @@ export class SmsTemplateService {
       awbNo = '',
     } = template_attributes;
 
-    // const newtemplate = new this.sms_templateModel({
-    //   phoneNo,
-    //   customerName,
-    //   orderId,
-    //   templateName,
-    //   awbNo,
-    // });
     const phoneNumber = phoneNo ? phoneNo.slice(-10) : undefined;
 
     const tracklink = `https://thesleepcompany.in/account/login?return_url=%2Faccount%23view=${orderId}`;

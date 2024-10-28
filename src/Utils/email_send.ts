@@ -1,4 +1,3 @@
-//import SparkPost from 'sparkpost';
 import { Injectable } from '@nestjs/common';
 import * as SparkPost from 'sparkpost';
 
@@ -26,6 +25,5 @@ export class emailsparkpost {
                 }),
             };
         }
-    };
-    
+    }; 
 }

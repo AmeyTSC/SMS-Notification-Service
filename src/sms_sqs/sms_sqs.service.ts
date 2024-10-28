@@ -18,13 +18,10 @@ export class SmsSqsService {
       region: process.env.AWS_REGION,
       credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY,
-
         secretAccessKey: process.env.AWS_SECERT_KEY,
       },
     });
     this.QUEUE_URL = process.env.SQS_URL_SMS;
-
-       
       };
 
   async sendSmsMessage(templateAttributes: any) {
@@ -58,9 +55,6 @@ export class SmsSqsService {
     } catch (error) {
       console.error('Error creating SMS log:', error.message);
       throw error;
-
     }
 }
-
-
 }

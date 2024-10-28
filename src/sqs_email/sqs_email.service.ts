@@ -2,9 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { nanoid } from 'nanoid';
-import { EmailHit, EmailHitSchema } from 'src/Schema/email_hits.schema';
-
-import { emailLogs, EmailLogSchema } from 'src/Schema/email_logs.schema';
+import { EmailHit} from 'src/Schema/email_hits.schema';
+import { emailLogs } from 'src/Schema/email_logs.schema';
 import { emailsparkpost } from 'src/utils/email_send';
 import { EmailTemplatesService } from 'src/utils/email_templates';
 import { getorderEdd } from 'src/utils/getorderedd';

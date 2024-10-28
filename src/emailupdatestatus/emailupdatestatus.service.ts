@@ -6,7 +6,7 @@ import { EmailHit } from 'src/Schema/email_hits.schema';
 @Injectable()
 export class EmailupdatestatusService {
   private readonly logger = new Logger(EmailupdatestatusService.name);
-
+  
   constructor(
     @InjectModel(EmailHit.name) private emailHitModel: Model<EmailHit>,
   ) {}

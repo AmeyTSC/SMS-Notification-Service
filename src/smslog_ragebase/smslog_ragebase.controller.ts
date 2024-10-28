@@ -1,7 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { SmslogRagebaseService } from './smslog_ragebase.service';
-
-
 @Controller('smslog_ragebase')
 export class SmslogRagebaseController {
     constructor(private smslogragebaseservice : SmslogRagebaseService){}
@@ -13,6 +11,5 @@ export class SmslogRagebaseController {
     ) {
         return this.smslogragebaseservice.smsranageLogs(start_date, end_date);
     }
-
 }
 
