@@ -1,0 +1,52 @@
+org: rohittesting9821
+service: notificationService
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  stage: ${opt:stage, 'dev'}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sqs:SendMessage
+      Resource:
+        - Fn::GetAtt:
+            - WhatsappReportQueue
+            - Arn
+functions:
+  gupshup_report_status:
+    handler: dist/sms_trigger/sms_trigger.service.js/SmsTriggerService
+    events:
+      - http:
+          path: /smstrigger/
+          method: post
+          cors: true
+  gupshupWebhook:
+    handler: dist/Services/gupshupupdates.service.js/GupshupUpdateStatus
+    timeout: 300
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - WhatsappReportQueue
+              - Arn
+          batchSize: 1
+package:
+  individually: true
+  excludeDevDependencies: true
+resources:
+  Resources:
+    WhatsappReportQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: whatsapp-report-queue
+        VisibilityTimeout: 300
+        DelaySeconds: 120
+plugins:
+  - serverless-offline
+custom:
+  serverless-offline:
+    host: localhost
+    port: 3001
+    environment:
+      IS_OFFLINE: true
