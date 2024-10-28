@@ -91,19 +91,19 @@ notification_whatsapp_logs:
           cors: true
  
   notification_sms_logs:
-    handler: src/controller/smslogs.report
+    handler: dist/smslogs/smslogs.service/SmslogsService
     timeout: 300
     events:
       - schedule: cron(30 4 * * ? *)
       # - schedule: cron(0 10 * * ? *)
       # - schedule: cron(*/1 * * * ? *)
       - http:
-          path: /notification/dailyreport
+          path: /smslogs
           method: get
           cors: true
  
   notification_smsrangebase_logs:
-    handler: src/controller/smslog_ragebase.smsranageLogs
+    handler: dist/smslog_ragebase/smslog_ragebase.service/SmslogRagebaseService
     timeout: 300
     events:
       - http:
@@ -168,7 +168,7 @@ notification_whatsapp_logs:
           batchSize: 1
  
   notification_sms:
-    handler: src/controller/sms.sms
+    handler: dist/sms_sqs/sms_sqs.service/SmsSqsService
     events:
       - http:
           path: /send_sms
@@ -177,7 +177,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_sms_sqs:
-    handler: src/controller/sms_trigger.smsSqs
+    handler: dist/sms_trigger/sms_trigger.service/SmsTriggerService
     timeout: 300
     events:
       - sqs:
@@ -188,7 +188,7 @@ notification_whatsapp_logs:
           batchSize: 1
  
   notification_sms_vialogueSms:
-    handler: src/controller/smsStatuscheck.vialogueSms
+    handler: dist/sms-statuscheck/sms-statuscheck.service/SmsStatuscheckService
     timeout: 300
     events:
       - http:
@@ -198,7 +198,7 @@ notification_whatsapp_logs:
           private: false
  
   sms_webhook:
-    handler: src/controller/smsupdatestatus.smsreportwebhook
+    handler: dist/smsupdatestatus/smsupdatestatus.service/SmsupdatestatusService
     timeout: 300
     events:
       - sqs:
