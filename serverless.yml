@@ -38,7 +38,7 @@ provider:
  
 functions:
   notification_whatsapp_sms:
-    handler: src/controller/whatsappstatuscheck.whatsapp_status_check //pending
+    handler: src/main.handler
     events:
       - http:
           path: whatsapp/checkstatus
@@ -46,7 +46,7 @@ functions:
           cors: true
  
   notification_whatsappmsg:
-    handler: src/controller/whatsapp.whatsapp_sms // dist
+    handler: src/main.handler
     events:
       - http:
           path: whatsappsms/send
@@ -54,7 +54,7 @@ functions:
           cors: true
  
   notification_dynamodb_trigger:
-    handler: src/controller/dynamo_trigger_whatsapp.whatsappmsg //dist
+    handler: src/main.handler
     events:
       - http:
           path: whatsapp-sqs/send
@@ -62,7 +62,7 @@ functions:
           cors: true
  
   notification_dynamodb_webhook:
-    handler: src/controller/dynamo_whatsapp_trigger.triggerTest //done
+    handler: src/main.handler 
     timeout: 300
     events:
       - sqs:
@@ -73,7 +73,7 @@ functions:
           batchSize: 1
  
 notification_whatsapp_logs:
-  handler: src/controller/getwhatsapplogs.whatappLogs
+  handler: src/main.handler
   timeout: 300
   events:
     - http:
@@ -82,7 +82,7 @@ notification_whatsapp_logs:
         cors: true
  
   notification_whatsapp_report_logs:
-    handler: src/controller/whatsapp_ragebase_report.whatapprangeLogs //Pending
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -91,7 +91,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_sms_logs:
-    handler: dist/smslogs/smslogs.service/SmslogsService
+    handler: src/main.handler
     timeout: 300
     events:
       - schedule: cron(30 4 * * ? *)
@@ -103,7 +103,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_smsrangebase_logs:
-    handler: dist/smslog_ragebase/smslog_ragebase.service/SmslogRagebaseService
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -112,7 +112,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_emailreport_logs:
-    handler: src/controller/emaillogs.emailLogs
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -121,7 +121,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_emailrange_report_logs:
-    handler: src/controller/email_rangelogs.emailrangeLogs
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -130,7 +130,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_export_data:
-    handler: src/controller/export_data.exportDataFromDynamoDB
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -139,7 +139,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_whatsapp_cron:
-    handler: src/controller/resendwhatsappmessage.resentwhatsapp //pending
+    handler: src/main.handler
     timeout: 300
     events:
       # - schedule: cron(*/30 * * * ? *)
@@ -149,7 +149,7 @@ notification_whatsapp_logs:
           cors: true
  
   gupshup_report_status:
-    handler: src/controller/gupshupMsgReport.gupshupRepor
+    handler: src/main.handler
     events:
       - http:
           path: gupshupmsgrep
@@ -157,7 +157,7 @@ notification_whatsapp_logs:
           cors: true
  
   gupshup_webhook:
-    handler: src/controller/gupshupupdatestatus.gupshupreportwebhook
+    handler: src/main.handler
     timeout: 300
     events:
       - sqs:
@@ -168,7 +168,7 @@ notification_whatsapp_logs:
           batchSize: 1
  
   notification_sms:
-    handler: dist/sms_sqs/sms_sqs.service/SmsSqsService
+    handler: src/main.handler
     events:
       - http:
           path: /send_sms
@@ -177,7 +177,7 @@ notification_whatsapp_logs:
           cors: true
  
   notification_sms_sqs:
-    handler: dist/sms_trigger/sms_trigger.service/SmsTriggerService
+    handler: src/main.handler
     timeout: 300
     events:
       - sqs:
@@ -188,7 +188,7 @@ notification_whatsapp_logs:
           batchSize: 1
  
   notification_sms_vialogueSms:
-    handler: dist/sms-statuscheck/sms-statuscheck.service/SmsStatuscheckService
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -198,7 +198,7 @@ notification_whatsapp_logs:
           private: false
  
   sms_webhook:
-    handler: dist/smsupdatestatus/smsupdatestatus.service/SmsupdatestatusService
+    handler: src/main.handler
     timeout: 300
     events:
       - sqs:
@@ -209,7 +209,7 @@ notification_whatsapp_logs:
           batchSize: 1
  
   notification_email_sparkpost:
-    handler: src/controller/emailstatuscheck.sparkport
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -219,7 +219,7 @@ notification_whatsapp_logs:
           private: false
  
   email_webhook:
-    handler: src/controller/emailupdatestatus.emailreportwebhook
+    handler: src/main.handler
     timeout: 300
     events:
       - sqs:
@@ -230,7 +230,7 @@ notification_whatsapp_logs:
           batchSize: 1
  
   notification_templatehits:
-    handler: src/controller/templatehitreport.templateHits
+    handler: src/main.handler
     timeout: 300
     events:
       - http:
@@ -240,7 +240,7 @@ notification_whatsapp_logs:
           private: false
  
   notification_email:
-    handler: src/controller/dynamo_trigger_email.emailEntry
+    handler: src/main.handler
     events:
       - http:
           path: /emailsqs
@@ -249,7 +249,7 @@ notification_whatsapp_logs:
           private: false
  
   notification_emailSend:
-    handler: src/controller/email.emailSend
+    handler: src/main.handler
     events:
       - http:
           path: /email/send
@@ -258,7 +258,7 @@ notification_whatsapp_logs:
           private: false
  
   notification_email_webhook:
-    handler: src/controller/sqs_email.emailTrigger
+    handler: src/main.handler
     timeout: 300
     events:
       - sqs:
