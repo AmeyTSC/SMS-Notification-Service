@@ -15,7 +15,7 @@ export const getproductimage = async (product_id, variant_id) => {
 
     // Find the variant with the specified variant_id
     const variant = product.variants.find(
-      (variant) => variant.id === variant_id
+      (variant) => variant.id === variant_id 
     );
 
     if (!variant) {
