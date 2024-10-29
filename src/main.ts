@@ -11,9 +11,7 @@ dotenv.config({ path: process.cwd() + '/.env' });
 let cachedServer: Handler;
 
 async function bootstrapLocal() {
-  const app = await NestFactory.create(AppModule, {
-    logger: ['log', 'error', 'warn', 'debug', 'verbose'], // Enable all log levels
-  });
+  const app = await NestFactory.create(AppModule);
   app.enableCors();
   await app.listen(3000);
 }
