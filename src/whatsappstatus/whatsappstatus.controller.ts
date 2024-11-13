@@ -7,9 +7,9 @@ export class WhatsappstatusController {
   constructor(private readonly whatsappstatusService: WhatsappstatusService) {}
 
   @Get('checkstatus')
-  async whatsapp_status_check(@Query('phoneNo') phoneNo: string) {
+  async whatsapp_status_check(@Query('phone') phone: string) {
     try {
-      const result = await this.whatsappstatusService.getWhatsappLogByPhone(phoneNo);
+      const result = await this.whatsappstatusService.getWhatsappLogByPhone(phone);
       return {
         statusCode: HttpStatus.OK,
         data: result,

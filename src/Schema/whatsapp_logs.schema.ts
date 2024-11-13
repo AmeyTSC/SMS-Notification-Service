@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema({ _id: false })
 export class DateRange {
@@ -12,6 +12,7 @@ export class DateRange {
 
 @Schema()
 export class whatsapp_logs extends Document {
+
   @Prop({ required: false, omitUndefined: true })
   awbNo?: string;
 

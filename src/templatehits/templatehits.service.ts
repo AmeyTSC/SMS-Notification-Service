@@ -13,12 +13,11 @@ export class TemplatehitsService {
   ) {}
 
   async getTemplateHits(phoneNumbers: string[], attribute_name: string, type: string) {
-    const model = type === 'whatsapp' ? this.whatsappLogModel : this.smsLogModel;
     const notFoundNumbers: string[] = [];
     const allItems = [];
 
     for (const phoneNo of phoneNumbers) {
-        let items;
+        let items:any;
     
         if (type === 'whatsapp') {
           items = await this.whatsappLogModel.find({

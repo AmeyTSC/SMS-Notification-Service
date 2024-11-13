@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { nanoid } from 'nanoid';
 import { smsSent } from 'src/utils/sms_send';
 import { SmsHitLog } from 'src/Schema/smshit_log.schema';
 import { SmsErrorLog } from 'src/Schema/smserror_log.schema';
@@ -54,7 +53,6 @@ export class SmsTriggerService {
 
   private async logSmsError(orderId: string, errorMessage: string) {
     const errorLog = new this.smsErrorLogModel({
-      id: nanoid(),
       order_id: orderId,
       error: errorMessage,
       date_and_time: this.getTriggerDateAndTime(),

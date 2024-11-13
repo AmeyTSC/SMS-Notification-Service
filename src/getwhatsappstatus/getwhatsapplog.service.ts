@@ -11,33 +11,14 @@ export class GetWhatsappLog {
   ) {}
 
   async getwhatsapplogs(createdAt: string) {
-     console.log(createdAt);
+    //  console.log(createdAt);
     if (!createdAt) {
         throw new Error("Please provide the 'created_at' parameter.");
       }
 
       const filter = { created_at: { $regex: createdAt, $options: 'i' } };
 
-      const projection = {
-        orderId: "", 
-        sent_status: "",
-        success_status: "",
-        read_status: "",
-        blockedForUser_status: "",
-        templateName: "",
-        phone: "",
-        whatsappstatus: "",
-        errorcode: "",
-        other_status: "",
-        deferred_status: "",
-        twentyFourHourExceeded_status: "",
-        unknownSubscriber_status: "",
-        created_at: "",
-        details: "",
-      };
-  
-      // Query all logs based on filter
-      const items = await this.whatsappLogModel.find(filter, projection).exec();
+      const items = await this.whatsappLogModel.find(filter).exec();
 
       // Counters
       let totalTemplates = {

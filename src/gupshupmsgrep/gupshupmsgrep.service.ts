@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
-import * as dotenv from 'dotenv';
-dotenv.config({ path: process.cwd() + '/.env' });
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class GupshupmsgrepService {
   private sqsClient: SQSClient;
   private QUEUE_URL: string;
+  private readonly logger: Logger = new Logger(GupshupmsgrepService.name)
   constructor() {
     this.sqsClient = new SQSClient({
       region: process.env.AWS_REGION,
@@ -30,12 +30,10 @@ export class GupshupmsgrepService {
     try {
       const command = new SendMessageCommand(params);
       await this.sqsClient.send(command);
-      return {
-        statusCode: 200,
-        message: 'sqs created successfully',
-      };
-    } catch (error) {
-      console.log(`Error Occured in sending msg to SQS: ${error.message}`);
+      this.logger.log('sqs created successfully');
+     }
+     catch (error) {
+      this.logger.error(`Error Occured in sending msg to SQS: ${error.message}`);
       return {
         statusCode: 200,
         message: JSON.stringify(error.message),

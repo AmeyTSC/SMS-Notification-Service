@@ -2,7 +2,6 @@ import { Injectable, Logger } from '@nestjs/common';
 import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { nanoid } from 'nanoid';
 import { SmsLog } from 'src/Schema/sms_log.schema';
 
 @Injectable()
@@ -45,7 +44,6 @@ export class SmsSqsService {
       .toISOString()
       .replace('Z', '+05:30');
     const smsLog = new this.smsLogModel({
-      id: nanoid(),
       ...smsResponse,
       timeAndDate,
     });

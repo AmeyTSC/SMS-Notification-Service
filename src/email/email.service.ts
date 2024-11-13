@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { nanoid } from 'nanoid';
 import { EmailTemplatesService } from 'src/utils/email_templates';
 import { emailLogs } from 'src/Schema/email_logs.schema';
 import { emailsparkpost } from 'src/utils/email_send';
@@ -17,7 +16,6 @@ export class EmailService {
             const sparkpostresponse = await this.Emailsparkpost.emailsparkpost(templateInfo);
             
             const newemailLog = new this.EmailLogModel({
-                id: nanoid(),
                 ...templateInfo,
                 ...templateAttributes,
                 email_response: sparkpostresponse,

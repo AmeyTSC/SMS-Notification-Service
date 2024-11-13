@@ -16,16 +16,39 @@ import { SmslogsModule } from './smslogs/smslogs.module';
 import { SmslogRagebaseModule } from './smslog_ragebase/smslog_ragebase.module';
 import { EmailSqsModule } from './email-sqs/email-sqs.module';
 import { TemplatehitsModule } from './templatehits/templatehits.module';
-import * as dotenv from 'dotenv';
+import { ConfigModule } from '@nestjs/config';
 import { EmailModule } from './email/email.module';
 import { EmaillogsModule } from './emaillogs/emaillogs.module';
 import { EmailstatuscheckModule } from './emailstatuscheck/emailstatuscheck.module';
 import { EmailupdatestatusModule } from './emailupdatestatus/emailupdatestatus.module';
-dotenv.config({path: process.cwd() + '/.env'});
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.DATABASE),SmsSqsModule, SmsTriggerModule, SmsStatuscheckModule, SmsupdatestatusModule, SmslogsModule, SmslogRagebaseModule,TemplatehitsModule, WhatsappDevModule, WhatsappSqsModule,  GetwhatsappstatusModule, GupshupmsgrepModule, ResendwhatsappModule, EmailSqsModule, WhatsappstatusModule,EmailModule, EmailSqsModule, EmaillogsModule, EmailstatuscheckModule, EmailupdatestatusModule ],
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.DATABASE),
+    SmsSqsModule,
+    SmsTriggerModule,
+    SmsStatuscheckModule,
+    SmsupdatestatusModule,
+    SmslogsModule,
+    SmslogRagebaseModule,
+    TemplatehitsModule,
+    WhatsappDevModule,
+    WhatsappSqsModule,
+    GetwhatsappstatusModule,
+    GupshupmsgrepModule,
+    ResendwhatsappModule,
+    EmailSqsModule,
+    WhatsappstatusModule,
+    EmailModule,
+    EmailSqsModule,
+    EmaillogsModule,
+    EmailstatuscheckModule,
+    EmailupdatestatusModule,
+  ],
 
   controllers: [AppController],
   providers: [AppService],

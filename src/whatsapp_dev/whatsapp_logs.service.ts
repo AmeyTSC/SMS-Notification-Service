@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { whatsapp_logs } from '../Schema/whatsapp_logs.schema';
+import {Logger} from "@nestjs/common";
 import { format } from 'date-fns-tz';
 import { Model } from 'mongoose';
 
 @Injectable()
 export class WhatsappLogsave {
+  private readonly logger: Logger = new Logger(WhatsappLogsave.name);
+
   constructor(
     @InjectModel(whatsapp_logs.name)
     private whatsappLogModel: Model<whatsapp_logs>,
@@ -59,9 +62,11 @@ export class WhatsappLogsave {
       // Save the log data to MongoDB
       
       const log = new this.whatsappLogModel(logData);
+      this.logger.log("Logs Saved successfully!")
       return await log.save();
     } catch (error) {
-      throw new Error(`Error logging WhatsApp response: ${error.message}`);
+      this.logger.error("Error Logging Whatsapp Response: ",error.message);
+      throw new InternalServerErrorException('Error logging WhatsApp response');
     }
   }
 }

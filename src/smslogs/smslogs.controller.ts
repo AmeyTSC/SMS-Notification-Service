@@ -5,9 +5,9 @@ import { SmslogsService } from './smslogs.service';
 export class SmslogsController {
     constructor(private smslogsService : SmslogsService){}
 
-    @Get()
+@Get()
 async smsreport(@Query('createdAt') createdAt: string) {
     return this.smslogsService.smsreport(createdAt);
-}
+ }
 }
 

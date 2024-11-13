@@ -11,5 +11,4 @@ export class EmailController {
  async emailSend(@Body() body: {template_attributes: emailLogs}) {
     return await this.emailservice.emailSend(body.template_attributes);
  }
-
 }

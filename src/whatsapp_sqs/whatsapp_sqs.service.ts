@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { SQSClient, SendMessageCommand} from '@aws-sdk/client-sqs';
 import { WhatsappLogService } from '../Services/whatsapp-logcreate.service';
-import * as dotenv from 'dotenv';
-dotenv.config({ path: process.cwd() + '/.env' });
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class WhatsappSqsService {
   private sqsClient: SQSClient;
   private QUEUE_URL: string;
+  private readonly logger: Logger = new Logger(WhatsappSqsService.name);
 
   constructor(
     private readonly whatsappLogService: WhatsappLogService,
@@ -20,7 +20,7 @@ export class WhatsappSqsService {
           process.env.AWS_SECERT_KEY,
       },
     });
-    this.QUEUE_URL =process.env.SQS_URL_TEST;
+    this.QUEUE_URL =process.env.SQS_URL_WHATSAPP;
   }
   // Method to send message to SQS
   async sendMessageToSqs(templateAttributes: any): Promise<any> {
@@ -33,18 +33,15 @@ export class WhatsappSqsService {
     try {
       const command = new SendMessageCommand(params);
       await this.sqsClient.send(command); // Send message to SQS
-      await this.whatsappLogService.createLog(templateAttributes); // Log the message
+      await this.whatsappLogService.createLog(templateAttributes);
+      this.logger.log('Data creation successfully!')
       return {
         statusCode: 200,
         message: 'Data creation successfully!',
       };
     } catch (error) {
-      console.error('Error sending message to SQS:', error);
-      return {
-        statusCode: 500,
-        message: 'Failed to send message',
-        error: error.message,
-      };
+      this.logger.error('Error sending message to SQS:', error.message);
+      throw new InternalServerErrorException('Failed to send message')
     }
   }
 }

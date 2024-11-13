@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { nanoid } from 'nanoid';
 import { EmailHit} from 'src/Schema/email_hits.schema';
 import { emailLogs } from 'src/Schema/email_logs.schema';
 import { emailsparkpost } from 'src/utils/email_send';
@@ -75,7 +74,6 @@ export class SqsEmailService {
         private async email_log_creation(email_response,template_attributes) {
             const {partMessageIds, totalMessageParts, ...cleanedSmsResponse} = email_response;
             const emaillog = new this.EmailLogModel({
-                id: nanoid(),
             ...cleanedSmsResponse,
             ...template_attributes,
             created_at: new Date(new Date().getTime() + 5.5 * 60 * 60 * 1000)
